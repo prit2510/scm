@@ -20,6 +20,10 @@ public class SecurityConfig {
     
     @Autowired
     private OAuthAuthenicationSuccessHandler handler;
+
+    @Autowired
+    private AuthFailtureHandler authFailtureHandler;
+
     // configuraiton of authentication providerfor spring security
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
@@ -58,6 +62,34 @@ public class SecurityConfig {
             // formLogin.defaultSuccessUrl("/home");
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
+
+             // formLogin.failureHandler(new AuthenticationFailureHandler() {
+
+            // @Override
+            // public void onAuthenticationFailure(HttpServletRequest request,
+            // HttpServletResponse response,
+            // AuthenticationException exception) throws IOException, ServletException {
+            // // TODO Auto-generated method stub
+            // throw new UnsupportedOperationException("Unimplemented method
+            // 'onAuthenticationFailure'");
+            // }
+
+            // });
+
+            // formLogin.successHandler(new AuthenticationSuccessHandler() {
+
+            // @Override
+            // public void onAuthenticationSuccess(HttpServletRequest request,
+            // HttpServletResponse response,
+            // Authentication authentication) throws IOException, ServletException {
+            // // TODO Auto-generated method stub
+            // throw new UnsupportedOperationException("Unimplemented method
+            // 'onAuthenticationSuccess'");
+            // }
+
+            // });
+            
+            formLogin.failureHandler(authFailtureHandler);
         });
         // httpSecurity.formLogin(Customizer.withDefaults());
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
