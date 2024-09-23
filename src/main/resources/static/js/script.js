@@ -20,6 +20,7 @@ function changeTheme() {
         setTheme(currentTheme);
         
     });
+    // console.log("chnage theme");
 }
 
 function setTheme(theme) {

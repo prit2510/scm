@@ -61,6 +61,7 @@ public class User implements UserDetails {
     private Providers provider = Providers.SELF;
     private String providerUserId;
 
+    private String emailToken;
     // add more fields if needed
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Contact> contacts = new ArrayList<>();
